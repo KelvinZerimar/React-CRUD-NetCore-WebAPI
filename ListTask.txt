@@ -1,0 +1,53 @@
+Build project API net core
+
+C:\Users\Ramirez\source\repos
+
+CLI: line command
+npx create-react-app app-listnotes
+cd app-listnotes
+code .
+
+npm start
+
+===========================================
+redux, react-redux, redux-thunk
+
+action - create, update, delte, etc, data
+reducers
+store
+
+
+cmpt -> dispatch(action) -> reducer -> cmpnt
+===========================================
+
+Instalar los tres paquetes de redux en nuestro proyecto
+npm i -s redux react-redux redux-thunk
+
+IDE: vsCode
+1)
+new folder actions
+new file store.js -> write code, CreateStore
+2)
+modify app.js -> call store 
+3)
+new folder components
+new file DNotes.js
+new file DNoteForm.js
+
+rfc crear new component funcional
+rcc crear new component class
+
+4) We'are create the actions the components
+add file dNote.js in el folder action -> Definimos what type the operations
+
+
+5) 
+add new folder reducer
+add new file dNote.js -> Import the actions
+
+6)
+add new file api.js in folder actions
+
+7) CLI
+npm i -s axios
+
