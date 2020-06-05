@@ -1,24 +1,35 @@
 using System;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 
-namespace webapinotes.Controllers
+namespace webapinotes.Models
 {
     public class Note
     {
-        public string id { get; set; }
-        public string title { get; set; }
-        public string description { get; set; }
-        public DateTime? dateCreate { get; set; }
-        public DateTime? dateModify { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "title")]
+        public string Title { get; set; }
+
+        [JsonProperty(PropertyName = "description")]
+        public string Description { get; set; }
+
+        [JsonProperty(PropertyName = "createDate")]
+        public DateTime CreatedDate { get; set; }
+
+         [JsonProperty(PropertyName = "modifyDate")]
+        public DateTime? ModifyDate { get; set; }
+
+         [JsonProperty(PropertyName = "isActive")]
         public bool IsActive { get; set; }
 
         public override string ToString()
         {
-            return ""; //JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public Note(){
-            dateCreate = DateTime.UtcNow;
+            CreatedDate = DateTime.UtcNow;
             IsActive = true;
         }
     }

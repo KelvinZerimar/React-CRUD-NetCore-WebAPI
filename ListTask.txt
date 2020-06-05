@@ -51,3 +51,10 @@ add new file api.js in folder actions
 7) CLI
 npm i -s axios
 
+
+************* Backend *****************
+***************************************
+8) Add library AzureCosmos
+dotnet add package Microsoft.Azure.Cosmos
+
+dotnet add package Newtonsoft.Json

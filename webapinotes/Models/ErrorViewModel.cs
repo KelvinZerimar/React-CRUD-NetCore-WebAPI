@@ -1,6 +1,6 @@
 using System;
 
-namespace webapinotes.Controllers
+namespace webapinotes.Models
 {
     public class ErrorViewModel
     {
