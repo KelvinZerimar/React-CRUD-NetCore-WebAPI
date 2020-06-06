@@ -5,6 +5,8 @@
 //     }
 // }
 
+import api from "./api";
+
 export const ACTION_TYPES = {
     CREATE : 'CREATE',
     UPDATE: 'UPDATE',
@@ -14,10 +16,17 @@ export const ACTION_TYPES = {
 
 export const fetchAll = () => dispatch =>{
         //get api request
-        dispatch({
-            type: ACTION_TYPES.FETCH_ALL,
-            payload: []
+        api.dNote().fetchAll()
+        .then(response => {
+            dispatch({
+                type: ACTION_TYPES.FETCH_ALL,
+                payload: response.data
+            })
         })
+        .catch(err => console.log(err))
+
+
+
     }
 
 // dispatch(create({fullName : }))

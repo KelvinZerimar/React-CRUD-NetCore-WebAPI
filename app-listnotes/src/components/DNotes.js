@@ -5,9 +5,5 @@ const DNotes = (props)=> {
 }
 
 export default function DNotes() {
-    return (
-        <div>
-            
-        </div>
-    )
+   
 }
