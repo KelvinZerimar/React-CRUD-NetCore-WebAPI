@@ -51,6 +51,9 @@ add new file api.js in folder actions
 7) CLI
 npm i -s axios
 
+10)
+npm i -s @material-ui/core @material-ui/icons
+
 
 ************* Backend *****************
 ***************************************
@@ -58,3 +61,6 @@ npm i -s axios
 dotnet add package Microsoft.Azure.Cosmos
 
 dotnet add package Newtonsoft.Json
+
+9)
+Add Cors

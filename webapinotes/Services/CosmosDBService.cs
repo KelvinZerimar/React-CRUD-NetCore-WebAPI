@@ -53,7 +53,7 @@ namespace webapinotes.Services
                 results.AddRange(response.ToList());
             }
 
-            return results;
+            return results.ToList();
         }
 
         public async Task UpdateItemAsync(string id, Note item)

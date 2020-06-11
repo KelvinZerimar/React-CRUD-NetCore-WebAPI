@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -20,9 +21,9 @@ namespace webapinotes.Controllers
 
         // GET: api/Note
         [HttpGet]
-        public async Task<IActionResult> GetNotes()
+        public async Task<IEnumerable<Note>> GetNotes()
         {
-            return Ok(await _cosmosDbService.GetItemsAsync("SELECT * FROM c"));
+            return await _cosmosDbService.GetItemsAsync("SELECT * FROM c");
         }
 
         // GET: api/Note/5
