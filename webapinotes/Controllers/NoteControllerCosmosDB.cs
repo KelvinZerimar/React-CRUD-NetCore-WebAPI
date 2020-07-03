@@ -10,11 +10,11 @@ namespace webapinotes.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class NoteController : ControllerBase
+    public class NoteController_ : ControllerBase
     {
         private readonly ICosmosDbService _cosmosDbService;
 
-        public NoteController(ILogger<NoteController> logger,ICosmosDbService cosmosDbService)
+        public NoteController_(ILogger<NoteController> logger,ICosmosDbService cosmosDbService)
         {
             _cosmosDbService = cosmosDbService;
         }

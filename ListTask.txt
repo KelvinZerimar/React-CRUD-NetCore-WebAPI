@@ -64,3 +64,8 @@ dotnet add package Newtonsoft.Json
 
 9)
 Add Cors
+
+10)--> 02/07/2020
+dotnet add package MongoDB.Driver --version 2.10.4
+
+11)
