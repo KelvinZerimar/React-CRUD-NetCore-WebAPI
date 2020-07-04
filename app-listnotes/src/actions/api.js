@@ -1,9 +1,9 @@
 import axios from "axios";
-const baseUrl = "https://localhost:5001/api/"
+const baseUrl = "https://noteapidemo.azurewebsites.net/"
 
 export default {
 
-    dNote(url = baseUrl + 'note/') {
+    dNote(url = baseUrl + 'api/note/') {
         return {
             fetchAll: () => axios.get(url),
             fetchById: id => axios.get(url + id),

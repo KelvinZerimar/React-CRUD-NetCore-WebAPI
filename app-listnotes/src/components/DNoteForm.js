@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Grid, TextField, withStyles, FormControl, InputLabel, Select, MenuItem, Button, FormHelperText } from "@material-ui/core";
 import useForm from "./useForm";
 import { connect } from "react-redux";
 import * as actions from "../actions/dNote";
+import { useToasts } from "react-toast-notifications";
 
 const styles = theme => ({
     root: {
@@ -10,6 +11,10 @@ const styles = theme => ({
             margin: theme.spacing(1),
             minWidth: 230,
         }
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 230,
     },
     smMargin: {
         margin: theme.spacing(1)
@@ -21,7 +26,9 @@ const initialFieldValues = {
     description: ''
 }
 
-const DNoteForm = ({classes, ...props})=> {
+const DNoteForm = ({ classes, ...props })=> {
+    //toast msg.
+    const { addToast } = useToasts()
 
     //validate()
     //validate({title:'amaru'})
@@ -47,35 +54,57 @@ const DNoteForm = ({classes, ...props})=> {
         setValues,
         errors,
         setErrors,
-        handleInputChange
-    } = useForm(initialFieldValues, validate)
+        handleInputChange,
+        resetForm
+    } = useForm(initialFieldValues, validate, props.setCurrentId)
 
     const handleSubmit = e =>{
         e.preventDefault()
         if (validate()) {
-            props.createDNote(values,()=>{window.alert('inserted.')})
+            //props.createDNote(values,()=>{window.alert('inserted.')})
+            const onSuccess = () => {
+            resetForm()
+            addToast("Submitted successfully", { appearance: 'success' })
+            }
+            if (props.currentId == 0)
+                props.createDNote(values, onSuccess)
+            else
+                props.updateDNote(props.currentId, values, onSuccess)
         }
     }
+
+    useEffect(() => {
+        if (props.currentId != 0) {
+            setValues({
+                ...props.dNoteList.find(x => x.id == props.currentId)
+            })
+            setErrors({})
+        }
+    }, [props.currentId])
 
     return(
     <form autoComplete="off" noValidate className={classes.root} onSubmit={handleSubmit}>
         <Grid container>
-            <Grid item xs={6}>
-                <TextField
+            <Grid item xs={12}>
+                <TextField 
                 name="title" 
                 variant="outlined"
                 label="Title" 
+                margin="normal"
+                style={{paddingRight: "20px", width: "400px"}}
                 value={values.title}
                 onChange={handleInputChange}
                 {...(errors.title && { error: true, helperText: errors.title })}
                 />
                 
             </Grid>
-            <Grid item xs={6}>
-                <TextField
+            <Grid item xs="auto">
+            <TextField
                 name="description" 
                 variant="outlined"
                 label="Description" 
+                margin="normal"
+                style={{paddingRight: "20px", width: "400px"}}
                 multiline
                 rows={4}
                 value={values.description}
@@ -95,6 +124,7 @@ const DNoteForm = ({classes, ...props})=> {
                     <Button
                         variant="contained"
                         className={classes.smMargin}
+                        onClick={resetForm}
                     >
                         Reset
                     </Button>

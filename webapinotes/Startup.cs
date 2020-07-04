@@ -47,6 +47,8 @@ namespace webapinotes
             //options.WithOrigins("http://localhost:3000")
             //.AllowAnyHeader()
             //.AllowAnyMethod());
+             // Use Cors
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             
             if (env.IsDevelopment())
             {
